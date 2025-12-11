@@ -2,6 +2,7 @@ package server
 
 import (
 	"bankroll_simulator_betstamp/model"
+	"bankroll_simulator_betstamp/service"
 	"encoding/json"
 	"fmt"
 	"net/http"
@@ -41,8 +42,13 @@ func (s *Server) HandleCreateSimulation(w http.ResponseWriter, r *http.Request) 
 		CreatedAt: time.Now(),
 	}
 
+	// Save simulation to storage
 	s.Storage.SaveSimulation(newSimulation)
 
+	// Run simulation asynchronously
+	go service.RunSimulation(newSimulation, s.Storage)
+
+	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(model.SimulationResponse{
 		SimulationId: newSimulation.Id,
 		Status:       newSimulation.Status,
@@ -59,7 +65,16 @@ func (s *Server) HandleSimulationResult(w http.ResponseWriter, r *http.Request) 
 	simulation.Mutex.RLock()
 	defer simulation.Mutex.RUnlock()
 
-	// TODO: Check simulation status and return results
+	if simulation.Status == "running" {
+		response := map[string]string{
+			"simulation_id": simulation.Id,
+			"status":        "running",
+		}
+		w.Header().Set("Content-Type", "application/json")
+		json.NewEncoder(w).Encode(response)
+		return
+	}
+
 	w.Header().Set("Content-Type", "application/json")
-	json.NewEncoder(w).Encode(simulation)
+	json.NewEncoder(w).Encode(simulation.Result)
 }
