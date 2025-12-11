@@ -14,7 +14,7 @@ type BetSizing struct {
 type SimulationRequest struct {
 	UserId           string    `json:"user_id"`
 	StartingBankroll float64   `json:"starting_bankroll"`
-	Odds             float64   `json:"odds"`
+	Odds             int       `json:"odds"`
 	Edge             float64   `json:"edge"`
 	NumBets          int       `json:"num_bets"`
 	BetSizing        BetSizing `json:"bet_sizing"`

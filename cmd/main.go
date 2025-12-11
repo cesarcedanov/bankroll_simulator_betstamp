@@ -9,5 +9,5 @@ import (
 func main() {
 	log.Printf("Server started at %s", time.Now())
 	srv := server.NewServer()
-	srv.Run("8080")
+	srv.Run(":8080")
 }

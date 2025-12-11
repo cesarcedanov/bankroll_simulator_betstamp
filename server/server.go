@@ -31,7 +31,6 @@ func (s *Server) Run(addr string) {
 
 	log.Println("Server running on", addr)
 
-	log.Println("Running on", addr)
 	http.ListenAndServe(addr, r)
 }
 
