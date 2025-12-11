@@ -35,13 +35,13 @@ go mod download
 go run main.go
 ```
 The server starts at:
-http://localhost:8080
+http://localhost:8080/betstamp/
 
 
 
 ## API Endpoints
 ### Create Simulation
-**POST** /simulations
+**POST** localhost:8080/betstamp/simulations
 Creates and runs a new bankroll simulation.
 
 ```
@@ -67,9 +67,8 @@ Response
 ```
 
 
-
 ### Get Simulation Results
-**GET** /simulations/:id/result\
+**GET** localhost:8080/betstamp/simulations/:id/result\
 Retrieves results for a completed simulation.
 ```
 Response
@@ -89,7 +88,8 @@ Response
 
 
 ### Get User Simulations
-**GET** /users/:id/simulations
+**GET** 
+localhost:8080/betstamp/users/:id/simulations
 Lists all simulations created by a user.
 ```
 Response
@@ -110,7 +110,7 @@ Response
 ## Example Usage
 1. Conservative Fractional Betting
 ```
-curl -X POST http://localhost:8080/simulations \
+curl -X POST http://localhost:8080/betstamp/simulations \
   -H "Content-Type: application/json" \
   -d '{
     "user_id": "user123",
@@ -127,7 +127,8 @@ curl -X POST http://localhost:8080/simulations \
 ```
 
 2. Flat Betting Strategy
-```curl -X POST http://localhost:8080/simulations \
+```
+curl -X POST http://localhost:8080/betstamp/simulations \
   -H "Content-Type: application/json" \
   -d '{
     "user_id": "user456",
@@ -145,12 +146,12 @@ curl -X POST http://localhost:8080/simulations \
 
 3. Retrieve Results
 ```
-curl http://localhost:8080/simulations/sim_a1b2c3d4/result
+curl http://localhost:8080/betstamp/simulations/sim_a1b2c3d4/result
 ```
 
 4. Get All User Simulations
 ```
-curl http://localhost:8080/users/user123/simulations
+curl http://localhost:8080/betstamp/users/user123/simulations
 ```
 
 
