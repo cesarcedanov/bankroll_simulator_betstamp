@@ -1,6 +1,6 @@
 package model
 
 const (
-	Status_Running  = "running"
-	Status_Finished = "finished"
+	Status_Running = "running"
+	Status_Done    = "done"
 )
