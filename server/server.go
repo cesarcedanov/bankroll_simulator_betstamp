@@ -1,6 +1,7 @@
 package server
 
 import (
+	"bankroll_simulator_betstamp/storage"
 	"fmt"
 	"log"
 	"net/http"
@@ -9,10 +10,13 @@ import (
 )
 
 type Server struct {
+	Storage *storage.Storage
 }
 
 func NewServer() *Server {
-	return &Server{}
+	return &Server{
+		Storage: storage.NewStorage(),
+	}
 }
 
 func (s *Server) Run(addr string) {
