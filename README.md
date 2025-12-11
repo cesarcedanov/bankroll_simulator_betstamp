@@ -26,13 +26,13 @@ Built with **Go**, leveraging concurrent worker pools and a clean, RESTful API.
 ```bash
 # Clone the repository
 git clone <repository-url>
-cd bankroll-simulation
+cd bankroll_simulation_betstamp
 
 # Install dependencies
 go mod download
 
 # Run the service
-go run main.go
+go run cmd/*.go
 ```
 The server starts at:
 http://localhost:8080/betstamp/
