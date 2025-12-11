@@ -40,6 +40,11 @@ http://localhost:8080/betstamp/
 
 
 ## API Endpoints
+
+### Health Check
+**GET** localhost:8080/betstamp/health
+
+
 ### Create Simulation
 **POST** localhost:8080/betstamp/simulations
 Creates and runs a new bankroll simulation.

@@ -21,7 +21,7 @@ func NewServer() *Server {
 
 func (s *Server) Run(addr string) {
 	r := chi.NewRouter()
-	r.Get("/", func(w http.ResponseWriter, r *http.Request) {
+	r.Get(urLWithPrefix("health"), func(w http.ResponseWriter, r *http.Request) {
 		w.Write([]byte("BetStamp API"))
 	})
 
